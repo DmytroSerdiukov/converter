@@ -1,11 +1,11 @@
-import { Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import CurrencyAPI from "../../api/Currency"
+import { Typography } from "@mui/material"
 import CurrencyField from "../CurrencyField"
 
-const ConverterMarkup = () => {
+const ConverterMarkup = ({fetchCurrencies, convert}) => {
 
     const [currencyOptions, setCurrencyOptions] = useState([])
+    const [currencyName, setCurrecies] = useState()
     const [fromCurrency, setFromCurrency] = useState()
     const [toCurrency, setToCurrency] = useState()
     const [exchangeRate, setExchangeRate] = useState()
@@ -22,7 +22,8 @@ const ConverterMarkup = () => {
     }
 
     const fetchAllCurrencies = async () => {
-        const res = await CurrencyAPI.fetchLatestRates()
+        const res = await fetchCurrencies()
+        setCurrecies(res.symbols)
         const firstCurrency = Object.keys(res.symbols)[0]
         setCurrencyOptions([...Object.keys(res.symbols)])
         setFromCurrency(firstCurrency)
@@ -30,9 +31,9 @@ const ConverterMarkup = () => {
         setExchangeRate(res.symbols[firstCurrency])
     }
 
-    const convert = async () => {
+    const convertValues = async () => {
         if (fromCurrency != null && toCurrency != null) {
-            const res = await CurrencyAPI.convert(fromCurrency, toCurrency)
+            const res = await convert(fromCurrency, toCurrency)
             const rate = res.rates[toCurrency]
             setExchangeRate(rate)
         }
@@ -44,7 +45,7 @@ const ConverterMarkup = () => {
     }, [])
 
     useEffect(() => {
-        convert()
+        convertValues()
     }, [fromCurrency, toCurrency])
 
     function handleFromAmountChange(e) {
@@ -62,6 +63,7 @@ const ConverterMarkup = () => {
         <h1>Convert</h1>
         <CurrencyField
             label='From'
+            currencies={currencyName}
             currencyOptions={currencyOptions}
             selectedCurrency={fromCurrency}
             onChangeCurrency={e => setFromCurrency(e.target.value)}
@@ -71,8 +73,11 @@ const ConverterMarkup = () => {
         <Typography variant="h5">=</Typography>
         <CurrencyField
             label='To'
+            currencies={currencyName}
+
             currencyOptions={currencyOptions}
             selectedCurrency={toCurrency}
+
             onChangeCurrency={e => setToCurrency(e.target.value)}
             onChangeAmount={handleToAmountChange}
             amount={toAmount}

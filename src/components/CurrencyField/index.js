@@ -1,10 +1,12 @@
 
 import React from 'react'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import styles from './style'
 
 const CurrencyField = (props) => {
     const {
         label,
+        currencies,
         currencyOptions,
         selectedCurrency,
         onChangeCurrency,
@@ -13,18 +15,17 @@ const CurrencyField = (props) => {
     } = props
     return (
         <div>
-            <TextField id="outlined-basic" label={label} variant="outlined" value={amount} onChange={onChangeAmount} />
+            <TextField sx={styles.input} label={'Amount'} variant="outlined" value={amount} onChange={onChangeAmount} />
             <FormControl>
-                <InputLabel>Currency</InputLabel>
+                <InputLabel>{label}</InputLabel>
                 <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
+                sx={styles.select}
                     label={selectedCurrency}
                     value={selectedCurrency}
                     onChange={onChangeCurrency}
                 >
                     {currencyOptions.map(option => (
-                        <MenuItem key={option} value={option}>{option}</MenuItem>
+                        <MenuItem key={option} value={option}>{currencies[option]}</MenuItem>
                     ))}
 
                 </Select>
