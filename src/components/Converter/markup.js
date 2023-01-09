@@ -64,7 +64,7 @@ const ConverterMarkup = ({
 
 
     return <>
-        <Typography variant="h5" style={styles.header}>Convert</Typography>
+        <Typography variant="h5" style={styles.header}>Currency converter</Typography>
         <Grid
             container
             item

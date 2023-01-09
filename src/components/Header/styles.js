@@ -1,11 +1,11 @@
 const styles = {
     container: {
-        backgroundColor: "#000",
+        backgroundColor: "#1393C8",
         color: '#fff',
         height: 100,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     iconText: {
         margin: 0,
