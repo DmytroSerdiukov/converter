@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import CurrencyAPI from "../../api/Currency"
 import HeaderMarkup from "./markup"
 
-const Header = (props) => {
+const Header = () => {
 
     useEffect( () => {
         fetchDollarLatestRate()

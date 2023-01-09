@@ -52,16 +52,24 @@ const ConverterMarkup = ({
         convertValues()
     }, [fromCurrency, toCurrency])
 
-    function handleFromAmountChange(e) {
+    const handleFromAmountChange = (e) => {
         setAmount(e.target.value)
         setAmountInFromCurrency(true)
     }
 
-    function handleToAmountChange(e) {
+    const handleToAmountChange = (e) => {
         setAmount(e.target.value)
         setAmountInFromCurrency(false)
     }
 
+    const onHandleFromCurrency = (e) => {
+        setFromCurrency(e.target.value)
+    }
+
+    const onHandleToCurrency = (e) => {
+        setToCurrency(e.target.value)
+    }
+    
 
     return <>
         <Typography variant="h5" style={styles.header}>Currency converter</Typography>
@@ -77,7 +85,7 @@ const ConverterMarkup = ({
                 currencies={currencyName}
                 currencyOptions={currencyOptions}
                 selectedCurrency={fromCurrency}
-                onChangeCurrency={e => setFromCurrency(e.target.value)}
+                onChangeCurrency={onHandleFromCurrency}
                 onChangeAmount={handleFromAmountChange}
                 amount={fromAmount}
             />
@@ -96,7 +104,7 @@ const ConverterMarkup = ({
                 currencyOptions={currencyOptions}
                 selectedCurrency={toCurrency}
 
-                onChangeCurrency={e => setToCurrency(e.target.value)}
+                onChangeCurrency={onHandleToCurrency}
                 onChangeAmount={handleToAmountChange}
                 amount={toAmount}
             />
