@@ -1,7 +1,7 @@
 const styles = {
     input: {
-        width: 200,
-        marginRight: 1
+        width: 250,
+        marginBottom: 2
     },
     select: {
         width: 250

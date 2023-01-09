@@ -1,11 +1,13 @@
+import React from 'react'
 import { Grid, Typography } from "@mui/material";
 import { US, EU } from "country-flag-icons/react/3x2";
+import styles from './styles';
 
 const UsdToHrn = ({ rate }) => {
     return (
         <div>
             <US width={48} />
-            <Typography component={'p'} style={{ margin: 0, textAlign: 'center' }}>{rate}</Typography>
+            <Typography component={'p'} style={styles.iconText}>{rate}</Typography>
         </div>
     );
 };
@@ -13,38 +15,30 @@ const UsdToHrn = ({ rate }) => {
 const EuroToHrn = ({ rate }) => {
     return (
         <div>
-            <EU width={48} style={{ padding: 0 }} />
-            <Typography component={'p'} style={{ margin: 0, textAlign: 'center' }}>{rate}</Typography>
+            <EU width={48} />
+            <Typography component={'p'} style={styles.iconText}>{rate}</Typography>
         </div>
     );
 };
 
 
-const HeaderMarkup = ({USD, EUR}) => {
+const HeaderMarkup = ({ USD, EUR }) => {
 
     return (
         <Grid
             container
             sx={styles.container}
-            height={100}
-            justifyContent={"center"}
-            alignItems={"center"}
         >
             <Grid container item justifyContent={"center"} xs={4} sm={2}>
-                <UsdToHrn rate={USD} />
+                <EuroToHrn rate={EUR} />
             </Grid>
             <Grid container item justifyContent={"center"} xs={4} sm={2}>
-                <EuroToHrn rate={EUR} />
+                <UsdToHrn rate={USD} />
             </Grid>
         </Grid>
     );
 }
 
-const styles = {
-    container: {
-        backgroundColor: "#000",
-        color: '#fff',
-    }
-}
+
 
 export default HeaderMarkup;

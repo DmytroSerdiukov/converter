@@ -30,7 +30,6 @@ const CurrencyAPI = {
                 symbols: toCurrency
             }
         })
-        console.log('CONVERT', response)
         return response.data
     }
 }

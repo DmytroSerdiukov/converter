@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react"
-import { Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import CurrencyField from "../CurrencyField"
+import styles from "./styles"
 
-const ConverterMarkup = ({fetchCurrencies, convert}) => {
+const ConverterMarkup = ({
+    fetchCurrencies,
+    convert
+}) => {
 
     const [currencyOptions, setCurrencyOptions] = useState([])
     const [currencyName, setCurrecies] = useState()
@@ -60,50 +64,44 @@ const ConverterMarkup = ({fetchCurrencies, convert}) => {
 
 
     return <>
-        <h1>Convert</h1>
-        <CurrencyField
-            label='From'
-            currencies={currencyName}
-            currencyOptions={currencyOptions}
-            selectedCurrency={fromCurrency}
-            onChangeCurrency={e => setFromCurrency(e.target.value)}
-            onChangeAmount={handleFromAmountChange}
-            amount={fromAmount}
-        />
+        <Typography variant="h5" style={styles.header}>Convert</Typography>
+        <Grid
+            container
+            item
+            xs={12}
+            sx={styles.container}
+            
+        >
+            <CurrencyField
+                label='From'
+                currencies={currencyName}
+                currencyOptions={currencyOptions}
+                selectedCurrency={fromCurrency}
+                onChangeCurrency={e => setFromCurrency(e.target.value)}
+                onChangeAmount={handleFromAmountChange}
+                amount={fromAmount}
+            />
+        </Grid>
         <Typography variant="h5">=</Typography>
-        <CurrencyField
-            label='To'
-            currencies={currencyName}
+        <Grid
+            container
+            item
+            xs={12}
+            sx={styles.container}
+        >
+            <CurrencyField
+                label='To'
+                currencies={currencyName}
 
-            currencyOptions={currencyOptions}
-            selectedCurrency={toCurrency}
+                currencyOptions={currencyOptions}
+                selectedCurrency={toCurrency}
 
-            onChangeCurrency={e => setToCurrency(e.target.value)}
-            onChangeAmount={handleToAmountChange}
-            amount={toAmount}
-        />
+                onChangeCurrency={e => setToCurrency(e.target.value)}
+                onChangeAmount={handleToAmountChange}
+                amount={toAmount}
+            />
+        </Grid>
     </>
 }
 
 export default ConverterMarkup
-
-
-const styles = {
-    heading: {
-        margin: 0,
-        marginBottom: '.5rem'
-    },
-    input: {
-        border: '1px solid #333',
-        borderRadius: '.3em',
-        padding: '.25rem',
-        width: '7em'
-    },
-    select: {
-        marginLeft: '.5rem'
-    },
-    equals: {
-        fontWeight: 'bold',
-        fontSize: '2rem'
-    }
-}

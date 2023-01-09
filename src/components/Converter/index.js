@@ -1,10 +1,8 @@
 import React from 'react'
-import { useEffect, useState } from "react"
 import CurrencyAPI from "../../api/Currency"
 import ConverterMarkup from "./markup"
 
 const Converter = () => {
-
 
     const fetchCurrencies = async() => {
         const res = await CurrencyAPI.fetchLatestRates()
